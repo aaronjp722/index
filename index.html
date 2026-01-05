@@ -473,6 +473,14 @@ body.script-open #scorecardWrapper{
   filter:brightness(1.05);
 }
 
+/* Motivation jump highlight */
+.highlight-motivation .factor {
+  color: #f97316 !important;
+  font-weight: 900;
+  transition: color 0.3s ease;
+}
+
+
 </style>
 
 </head>
@@ -1284,10 +1292,11 @@ body.script-open #scorecardWrapper{
 </tr>
 
 
-<tr>
+<tr id="motivation">
   <td class="factor" onclick="toggleQuestions('q_motivation')">
     Motivation
   </td>
+
   <td class="level">Little evidence of motivation.</td>
   <td class="level">Will do work but requires pushing.</td>
   <td class="level">Self-motivated. Works without supervision.</td>
@@ -1626,6 +1635,29 @@ document.addEventListener("click", function (e) {
   if (!clickedInside) {
     dropdown.style.display = "none";
   }
+});
+
+   /* =========================================================
+   SCROLL + HIGHLIGHT MOTIVATION
+========================================================= */
+document.querySelectorAll('a[href="#motivation"]').forEach(link => {
+  link.addEventListener("click", function (e) {
+    e.preventDefault();
+
+    const row = document.getElementById("motivation");
+    if (!row) return;
+
+    // Smooth scroll
+    row.scrollIntoView({ behavior: "smooth", block: "center" });
+
+    // Highlight
+    row.classList.add("highlight-motivation");
+
+    // Remove highlight after 2.5s
+    setTimeout(() => {
+      row.classList.remove("highlight-motivation");
+    }, 2500);
+  });
 });
 
    
@@ -1990,7 +2022,7 @@ Based on what we’ve discussed so far, do you have any questions?
 
    
    <p>
-  <a href="#experience" style="font-weight:bold; color:#22c55e; text-decoration:none;">
+  <a href="#motivation" class="jump-motivation" style="font-weight:bold; color:#22c55e; text-decoration:none;">
     Motivation
   </a>
 </p>
@@ -2030,6 +2062,7 @@ As part of this compare the candidate’s first impression when measured at the 
 </body>
 
 </html>
+
 
 
 
