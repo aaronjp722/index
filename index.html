@@ -1085,10 +1085,11 @@ td.factor #motivation-word.motivation-highlight{
 
 <tr><td class="section" colspan="7">SITUATIONAL FIT FACTORS</td></tr>
 
-<tr>
+<tr id="job-fit">
   <td class="factor" onclick="toggleQuestions('q_job_fit')">
     Job Fit with Recent Comparable Results
   </td>
+
   <td class="level">No relevant accomplishments.</td>
   <td class="level">Some accomplishments but inconsistent.</td>
   <td class="level">Major accomplishments.</td>
@@ -1647,25 +1648,18 @@ document.addEventListener("click", function (e) {
    /* =========================================================
    SCROLL + HIGHLIGHT MOTIVATION
 ========================================================= */
-document.querySelectorAll('a[href="#motivation"]').forEach(link => {
+
+document.querySelectorAll('a[href^="#"]').forEach(link => {
   link.addEventListener("click", function (e) {
-    e.preventDefault();
+    const targetId = this.getAttribute("href").slice(1);
+    const target = document.getElementById(targetId);
 
-    const row = document.getElementById("motivation");
-    const word = document.getElementById("motivation-word");
-
-    if (!row || !word) return;
-
-    row.scrollIntoView({ behavior: "smooth", block: "center" });
-
-    word.classList.add("motivation-highlight");
-
-    setTimeout(() => {
-      word.classList.remove("motivation-highlight");
-    }, 3000);
+    if (target) {
+      e.preventDefault();
+      target.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
   });
 });
-
 
 
    
@@ -1776,9 +1770,9 @@ document.querySelectorAll('a[href="#motivation"]').forEach(link => {
   </a>
 </p>
      <p>
-  <a href="#experience" style="font-weight:bold; color:#22c55e; text-decoration:none;">
-    Job Fit w/ Recent Comparable Results
-  </a>
+  <a href="#job-fit" style="font-weight:bold; color:#22c55e; text-decoration:none;">
+  Job Fit w/ Recent Comparable Results
+</a>
 </p>
      <p>
   <a href="#experience" style="font-weight:bold; color:#22c55e; text-decoration:none;">
@@ -1815,9 +1809,10 @@ document.querySelectorAll('a[href="#motivation"]').forEach(link => {
 </ul>
 
 <p>
-  <a href="#experience" style="font-weight:bold; color:#22c55e; text-decoration:none;">
-    Job Fit w/ Recent Comparable Results
-  </a>
+  <a href="#job-fit" style="font-weight:bold; color:#22c55e; text-decoration:none;">
+  Job Fit w/ Recent Comparable Results
+</a>
+
 </p>
 
 <p>
@@ -1852,9 +1847,9 @@ document.querySelectorAll('a[href="#motivation"]').forEach(link => {
 </ul>
 
 <p>
-  <a href="#experience" style="font-weight:bold; color:#22c55e; text-decoration:none;">
-    Job Fit w/ Recent Comparable Results
-  </a>
+  <a href="#job-fit" style="font-weight:bold; color:#22c55e; text-decoration:none;">
+  Job Fit w/ Recent Comparable Results
+</a>
 </p>
 
 
@@ -1901,9 +1896,9 @@ document.querySelectorAll('a[href="#motivation"]').forEach(link => {
 </ul>
 
 <p>
-  <a href="#experience" style="font-weight:bold; color:#22c55e; text-decoration:none;">
-    Job Fit w/ Recent Comparable Results
-  </a>
+  <a href="#job-fit" style="font-weight:bold; color:#22c55e; text-decoration:none;">
+  Job Fit w/ Recent Comparable Results
+</a>
 </p>
 
 <p>
@@ -1938,9 +1933,10 @@ document.querySelectorAll('a[href="#motivation"]').forEach(link => {
 </ul>
 
 <p>
-  <a href="#experience" style="font-weight:bold; color:#22c55e; text-decoration:none;">
-    Job Fit w/ Recent Comparable Results
-  </a>
+  <a href="#job-fit" style="font-weight:bold; color:#22c55e; text-decoration:none;">
+  Job Fit w/ Recent Comparable Results
+</a>
+
 </p>
 
 <p>
@@ -2002,9 +1998,10 @@ How would you go about addressing this?
   </a>
 </p>
       <p>
-  <a href="#experience" style="font-weight:bold; color:#22c55e; text-decoration:none;">
-    Job Fit w/ Recent Comparable Results
-  </a>
+  <a href="#job-fit" style="font-weight:bold; color:#22c55e; text-decoration:none;">
+  Job Fit w/ Recent Comparable Results
+</a>
+
 </p>
    <hr>
 
@@ -2070,6 +2067,7 @@ As part of this compare the candidate’s first impression when measured at the 
 </body>
 
 </html>
+
 
 
 
