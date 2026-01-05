@@ -1624,10 +1624,13 @@ function createScorecard(){
      IMPORTANT: text/plain avoids preflight blocking
   ====================================================== */
   fetch(WEBHOOK_URL, {
-    method: "POST",
-    headers: { "Content-Type": "text/plain;charset=utf-8" },
-    body: JSON.stringify(payload)
-  })
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify(payload)
+})
+
   .then(() => alert("Scorecard submitted successfully."))
   .catch(() => alert("Submission failed."));
 }
@@ -2101,6 +2104,7 @@ As part of this compare the candidate’s first impression when measured at the 
 </body>
 
 </html>
+
 
 
 
