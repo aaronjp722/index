@@ -1654,25 +1654,24 @@ document.querySelectorAll('a[href="#motivation"]').forEach(link => {
     const row = document.getElementById("motivation");
     const word = document.getElementById("motivation-word");
 
-    if (!row || !word) return;
+    if (!row || !word) {
+      console.warn("Motivation elements not found");
+      return;
+    }
 
-    // Scroll first
+    // Scroll
     row.scrollIntoView({ behavior: "smooth", block: "center" });
 
-    // ⏱️ Delay highlight so the eye actually sees it
-    setTimeout(() => {
-      word.style.color = "#f97316";   // FORCE ORANGE
-      word.style.fontWeight = "900";
-
-      // Optional reset (comment out if you want it to stay)
-      setTimeout(() => {
-        word.style.color = "";
-        word.style.fontWeight = "";
-      }, 3000);
-
-    }, 350); // ← THIS is the missing piece
+    // FORCE repaint after scroll + fixed panel
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        word.style.setProperty("color", "#f97316", "important");
+        word.style.setProperty("font-weight", "900", "important");
+      });
+    });
   });
 });
+
 
 
    
@@ -2077,6 +2076,7 @@ As part of this compare the candidate’s first impression when measured at the 
 </body>
 
 </html>
+
 
 
 
