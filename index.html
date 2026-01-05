@@ -1403,6 +1403,25 @@ td.factor #motivation-word.motivation-highlight{
   <textarea id="notes"></textarea>
 </div>
 
+<div class="meta-group" style="margin-top:20px;">
+  <label>Interview Outcome</label>
+  <select id="interviewStatus" style="
+    padding:12px 14px;
+    font-size:14px;
+    background:#020617;
+    color:#ffffff;
+    border:1px solid rgba(255,255,255,.12);
+    border-radius:10px;
+    font-weight:700;
+  ">
+    <option value="">Select outcome…</option>
+    <option value="shortlist">Shortlist</option>
+    <option value="decline">Decline</option>
+    <option value="no_show">No Show</option>
+  </select>
+</div>
+
+   
 <button class="create-btn" onclick="createScorecard()">Create Scorecard</button>
 
 </div> <!-- END scorecardWrapper -->
@@ -1548,6 +1567,9 @@ function createScorecard(){
     interview_type: document.getElementById('interviewType').value,
     interviewer: document.getElementById('interviewerName').value,
     jira_code: jiraInput.value,
+
+   interview_status: document.getElementById('interviewStatus')?.value || "",
+
 
     // Summary Totals
     basic_total: document.getElementById('basicTotal').textContent,
@@ -2067,6 +2089,7 @@ As part of this compare the candidate’s first impression when measured at the 
 </body>
 
 </html>
+
 
 
 
