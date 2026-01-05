@@ -480,6 +480,12 @@ body.script-open #scorecardWrapper{
   transition: color 0.3s ease;
 }
 
+   /* Highlight ONLY the word "Motivation" */
+.motivation-highlight {
+  color: #f97316 !important; /* ORANGE */
+  font-weight: 900;
+}
+
 
 </style>
 
@@ -1294,8 +1300,9 @@ body.script-open #scorecardWrapper{
 
 <tr id="motivation">
   <td class="factor" onclick="toggleQuestions('q_motivation')">
-    Motivation
+    <span id="motivation-word">Motivation</span>
   </td>
+
 
   <td class="level">Little evidence of motivation.</td>
   <td class="level">Will do work but requires pushing.</td>
@@ -1645,20 +1652,23 @@ document.querySelectorAll('a[href="#motivation"]').forEach(link => {
     e.preventDefault();
 
     const row = document.getElementById("motivation");
-    if (!row) return;
+    const word = document.getElementById("motivation-word");
 
-    // Smooth scroll
+    if (!row || !word) return;
+
+    // Scroll to section
     row.scrollIntoView({ behavior: "smooth", block: "center" });
 
-    // Highlight
-    row.classList.add("highlight-motivation");
+    // Highlight ONLY the word
+    word.classList.add("motivation-highlight");
 
-    // Remove highlight after 2.5s
+    // Remove highlight after delay
     setTimeout(() => {
-      row.classList.remove("highlight-motivation");
+      word.classList.remove("motivation-highlight");
     }, 2500);
   });
 });
+
 
    
 </script>
@@ -2062,6 +2072,7 @@ As part of this compare the candidate’s first impression when measured at the 
 </body>
 
 </html>
+
 
 
 
