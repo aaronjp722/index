@@ -1608,7 +1608,27 @@ function closeScript(){
   document.body.classList.remove('script-open'); // 🔑 reset
 }
 
+/* =========================================================
+   CLOSE CANDIDATE DROPDOWN ON OUTSIDE CLICK
+========================================================= */
+document.addEventListener("click", function (e) {
+  const dropdown = document.getElementById("candidateDropdown");
+  const input = document.getElementById("candidateName");
+  const button = document.querySelector(".get-candidates-btn");
 
+  if (!dropdown) return;
+
+  const clickedInside =
+    dropdown.contains(e.target) ||
+    input.contains(e.target) ||
+    button.contains(e.target);
+
+  if (!clickedInside) {
+    dropdown.style.display = "none";
+  }
+});
+
+   
 </script>
 <!-- ================= INTERVIEW SCRIPT PANEL ================= -->
 <div id="scriptPanel" class="script-panel">
@@ -2010,6 +2030,7 @@ As part of this compare the candidate’s first impression when measured at the 
 </body>
 
 </html>
+
 
 
 
