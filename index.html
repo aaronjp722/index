@@ -1568,8 +1568,12 @@ function createScorecard(){
     interviewer: document.getElementById('interviewerName').value,
     jira_code: jiraInput.value,
 
-   interview_status: document.getElementById('interviewStatus')?.value || "",
-   interview_status: externalInterviewStatus,
+   interview_status: (
+  externalInterviewStatus ||
+  document.getElementById('interviewStatus')?.value ||
+  ""
+),
+
 
 
 
@@ -2097,6 +2101,7 @@ As part of this compare the candidate’s first impression when measured at the 
 </body>
 
 </html>
+
 
 
 
