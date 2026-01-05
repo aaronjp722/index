@@ -1569,6 +1569,8 @@ function createScorecard(){
     jira_code: jiraInput.value,
 
    interview_status: document.getElementById('interviewStatus')?.value || "",
+   interview_status: externalInterviewStatus,
+
 
 
     // Summary Totals
@@ -1683,6 +1685,12 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
   });
 });
 
+let externalInterviewStatus = "";
+
+window.addEventListener("message", function (event) {
+  if (!event.data || event.data.type !== "INTERVIEW_STATUS") return;
+  externalInterviewStatus = event.data.value;
+});
 
    
 </script>
@@ -2089,6 +2097,7 @@ As part of this compare the candidate’s first impression when measured at the 
 </body>
 
 </html>
+
 
 
 
