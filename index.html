@@ -481,9 +481,9 @@ body.script-open #scorecardWrapper{
 }
 
    /* Highlight ONLY the word "Motivation" */
-.motivation-highlight {
-  color: #f97316 !important; /* ORANGE */
-  font-weight: 900;
+td.factor #motivation-word.motivation-highlight{
+  color:#f97316 !important;
+  font-weight:900 !important;
 }
 
 
@@ -1654,21 +1654,15 @@ document.querySelectorAll('a[href="#motivation"]').forEach(link => {
     const row = document.getElementById("motivation");
     const word = document.getElementById("motivation-word");
 
-    if (!row || !word) {
-      console.warn("Motivation elements not found");
-      return;
-    }
+    if (!row || !word) return;
 
-    // Scroll
     row.scrollIntoView({ behavior: "smooth", block: "center" });
 
-    // FORCE repaint after scroll + fixed panel
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        word.style.setProperty("color", "#f97316", "important");
-        word.style.setProperty("font-weight", "900", "important");
-      });
-    });
+    word.classList.add("motivation-highlight");
+
+    setTimeout(() => {
+      word.classList.remove("motivation-highlight");
+    }, 3000);
   });
 });
 
@@ -2076,6 +2070,7 @@ As part of this compare the candidate’s first impression when measured at the 
 </body>
 
 </html>
+
 
 
 
