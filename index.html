@@ -1421,39 +1421,7 @@ td.factor #motivation-word.motivation-highlight{
   </select>
 </div>
 
-   /* =========================================================
-   HARD VALIDATION — BLOCK SUBMIT IF INCOMPLETE
-========================================================= */
-function validateScorecard() {
-  const errors = [];
-
-  const candidate = document.getElementById('candidateName')?.value.trim();
-  const interviewer = document.getElementById('interviewerName')?.value.trim();
-  const jira = document.getElementById('jiraCode')?.value.trim();
-
-  if (!candidate) errors.push("Candidate name is required.");
-  if (!interviewer) errors.push("Interviewer name is required.");
-  if (!jira) errors.push("Jira code is required.");
-
-  document.querySelectorAll('.score-input').forEach(input => {
-    if (input.value === "" || isNaN(input.value)) {
-      const row = input.closest('tr');
-      const label = row?.querySelector('.factor')?.innerText || "Score";
-      errors.push(`Missing score: ${label}`);
-    }
-  });
-
-  if (errors.length) {
-    alert(
-      "Cannot submit scorecard.\n\n" +
-      errors.join("\n")
-    );
-    return false;
-  }
-
-  return true;
-}
-
+   
    
 <button class="create-btn" onclick="createScorecard()">Create Scorecard</button>
 
@@ -2137,6 +2105,7 @@ As part of this compare the candidate’s first impression when measured at the 
 </body>
 
 </html>
+
 
 
 
