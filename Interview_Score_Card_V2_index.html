@@ -1665,6 +1665,31 @@ function createScorecard(){
     submitted_at: new Date().toISOString()
   };
 
+// ==========================================
+// AUTO INSERT NO SHOW RECORD
+// ==========================================
+if (payload.interview_status === "no_show") {
+
+  fetch("https://hook.us1.make.com/vala46m4utmn25v9g32b7n3eqh22n54a", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      jira_code: payload.jira_code,
+      recorded_by: payload.interviewer,
+      notes: "Missed scheduled interview"
+    })
+  })
+  .catch(() => console.log("No-show webhook failed"));
+}
+
+fetch(WEBHOOK_URL, {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify(payload)
+})
+   
   /* =====================================================
      WEBHOOK POST (CORS-SAFE CONFIG)
      IMPORTANT: text/plain avoids preflight blocking
@@ -2150,6 +2175,7 @@ As part of this compare the candidate’s first impression when measured at the 
 </body>
 
 </html>
+
 
 
 
